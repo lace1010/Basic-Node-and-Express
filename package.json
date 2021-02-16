@@ -9,7 +9,14 @@
 		"fcc-express-bground": "https://github.com/freeCodeCamp/fcc-express-bground-pkg.git"
 	},
 	"main": "server.js",
+	"engines": {
+		"node": "v14.15.1"
+	},
 	"scripts": {
 		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://idontknow/todo.git"
 	}
 }
