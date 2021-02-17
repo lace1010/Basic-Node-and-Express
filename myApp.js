@@ -15,5 +15,5 @@ app.get("/", function (req, res) {
 });
 
 // Fourth challenge in basic node and express -Serve Static Assests
-app.use(express.static(__dirname + "/public/style.css"));
+app.use("/public", express.static(__dirname + "/public"));
 module.exports = app;
