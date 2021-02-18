@@ -14,10 +14,13 @@ app.use((req, res, next) => {
 });
 
 // -->11) Mount the body-parser middleware here. We want middleware functions to be before routes so it works on all routes
-app.use((req, res, next) => {
-  bodyParser.urlencoded({ extended: false });
-  next();
-});
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 //** 1) -log Hello World
 console.log("Hello World");
 
