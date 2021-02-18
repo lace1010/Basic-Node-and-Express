@@ -18,8 +18,7 @@ app.use((req, res, next) => {
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // In order to parse JSON data sent in the POST request,
 
 //** 1) -log Hello World
 console.log("Hello World");
@@ -90,6 +89,10 @@ app.get("/name", (req, res) => {
 //Must place it before all of the routes
 
 //** 12) Get data form POST
+app.post("/name", (req, res) => {
+  // This will be called on when a name in the form is submitted
+  res.json({ name: req.body.first + " " + req.body.last });
+});
 
-// This last line of code was here when I cloned it over
+// This last line of code was hesre when I cloned it over
 module.exports = app;
