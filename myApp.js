@@ -4,6 +4,8 @@ var app = express();
 require("dotenv").config(); // Be sure to put this at top of page to load first
 // Make sure to add config variables to heroku in the settings config vars section
 
+var bodyParser = require("body-parser");
+
 // --> 7) Mount the logger middleware here
 // We put this logger middlware first because we want it to log for all routes.
 app.use((req, res, next) => {
@@ -11,6 +13,11 @@ app.use((req, res, next) => {
   next(); // If next() is not called then your servel will be stuck forever. (Essentially ends the loop)
 });
 
+// -->11) Mount the body-parser middleware here. We want middleware functions to be before routes so it works on all routes
+app.use((req, res, next) => {
+  bodyParser.urlencoded({ extended: false });
+  next();
+});
 //** 1) -log Hello World
 console.log("Hello World");
 
@@ -75,6 +82,11 @@ app.get("/:word/echo", (req, res) => {
 app.get("/name", (req, res) => {
   res.json({ name: req.query.first + " " + req.query.last });
 });
+
+//** 11) Use body-parser to Parse POST Requests
+//Must place it before all of the routes
+
+//** 12) Get data form POST
 
 // This last line of code was here when I cloned it over
 module.exports = app;
