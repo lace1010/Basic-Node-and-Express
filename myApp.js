@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
 // Middleware syntax - app.use(path, middlewareFunction).
 // We must have the "/public" in path before calling express.static for this to work
 app.use("/public", express.static(__dirname + "/public"));
-module.exports = app;
 
 /* Fifth challenge in basic node and express -Serve JSON on a specific route
 app.get("/json", (req, res) => {
@@ -29,7 +28,7 @@ app.get("/json", (req, res) => {
   res.json({ message: "Hello json" });
 }); */
 
-// Sixth challenge in basic node and express -use the .env File
+// Sixth challenge in basic node and express - use the .env File
 // need to create a .env file for this to work.
 console.log(process.env.MESSAGE_STYLE, " <= message style");
 app.get("/json", (req, res) => {
@@ -40,3 +39,14 @@ app.get("/json", (req, res) => {
   }
   res.json(jsonResponse);
 });
+
+// Seventh challenge in basic node and express -Implement a Root-Level Request Logger Middleware
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next(); // If next() is not called then your servel will be stuck forever. (Essentially ends the loop)
+});
+
+// Eigth challenge in basic node and express -Chain Middleware to Create a Time Server
+
+// This last line of code was here when I cloned it over
+module.exports = app;
