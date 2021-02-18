@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 var express = require("express");
 var app = express();
 require("dotenv").config(); // Be sure to put this at top of page to load first
@@ -32,10 +33,10 @@ app.get("/json", (req, res) => {
 // need to create a .env file for this to work.
 console.log(process.env.MESSAGE_STYLE, " <= message style");
 app.get("/json", (req, res) => {
+  var jsonResponse = { message: "Hello Json" };
   // Make sure uppercase is a string inside quotes...
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({ message: "HELLO JSON" });
-  } else {
-    res.json({ message: "hello json" });
+    jsonResponse.message = jsonResponse.message.toUpperCase();
   }
+  res.json(jsonResponse);
 });
