@@ -7,6 +7,13 @@ require("dotenv").config(); // Be sure to put this at top of page to load first
 // First challenge in basic node and express -log Hello World
 console.log("Hello World");
 
+// Seventh challenge in basic node and express -Implement a Root-Level Request Logger Middleware
+// This challenge has to be placed before routes in order to work
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next(); // If next() is not called then your servel will be stuck forever. (Essentially ends the loop)
+});
+
 /*  Seond challenge in basic node and express - Send a file (string)
 app.get("/", function (req, res) {
   res.sendFile("Hello Express");
@@ -38,12 +45,6 @@ app.get("/json", (req, res) => {
     jsonResponse.message = jsonResponse.message.toUpperCase();
   }
   res.json(jsonResponse);
-});
-
-// Seventh challenge in basic node and express -Implement a Root-Level Request Logger Middleware
-app.use((req, res, next) => {
-  console.log(req.method + " " + req.path + " - " + req.ip);
-  next(); // If next() is not called then your servel will be stuck forever. (Essentially ends the loop)
 });
 
 // Eigth challenge in basic node and express -Chain Middleware to Create a Time Server
