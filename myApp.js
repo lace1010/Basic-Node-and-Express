@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
-require("dotenv").config();
+require("dotenv").config(); // Be sure to put this at top of page to load first
+// Make sure to add config variables to heroku in the settings config vars section
 
 // First challenge in basic node and express -log Hello World
 console.log("Hello World");
@@ -29,6 +30,7 @@ app.get("/json", (req, res) => {
 
 // Sixth challenge in basic node and express -use the .env File
 // need to create a .env file for this to work.
+console.log(process.env.MESSAGE_STYLE, " <= message style");
 app.get("/json", (req, res) => {
   // Make sure uppercase is a string inside quotes...
   if (process.env.MESSAGE_STYLE === "uppercase") {
