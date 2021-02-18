@@ -61,5 +61,14 @@ app.get(
     res.json({ time: req.time });
   }
 );
+
+//** 9) Get Route Parameter Input from the Client
+app.get("/:word/echo", (req, res) => {
+  // So in url we can add to our heroku url /anyWordWeWant/echo. Then word will be whatever that word is.
+  let word = req.params.word;
+  // In the heroku url with the added /anyWordWeWant/echo. We will respond with this json object with {"echo":"anyWordWeWany"}
+  res.json({ echo: word });
+});
+
 // This last line of code was here when I cloned it over
 module.exports = app;
